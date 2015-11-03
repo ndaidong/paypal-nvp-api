@@ -5,7 +5,7 @@ Node.js wrapper for the Paypal Name-Value Pair — NVP
 # Usage
 
 ```
-import Paypal = from 'paypal-nvp-api';
+import Paypal from 'paypal-nvp-api';
 
 let config = {
   mode: 'sandbox', // or 'live'
