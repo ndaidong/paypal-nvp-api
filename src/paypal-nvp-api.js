@@ -4,23 +4,24 @@
  * Refer: https://developer.paypal.com/docs/classic/api/
  **/
 
+'use strict'; // to use "let" keyword
+
 var bella = require('bellajs');
 var request = require('request');
-var Promise = require('bluebird');
 
 var version = 124;
 var liveAPIBase = 'https://api-3t.paypal.com/nvp';
 var sandboxAPIBase = 'https://api-3t.sandbox.paypal.com/nvp';
 
 var stringify = (data) => {
-  var s = '';
+  let s = '';
   if(bella.isString(data)){
     s = data;
   }
   else if(bella.isArray(data) || bella.isObject(data)){
-    var ar = [];
-    for(var k in data){
-      var val = data[k];
+    let ar = [];
+    for(let k in data){
+      let val = data[k];
       if(bella.isString(val)){
         val = bella.encode(val);
       }
@@ -41,12 +42,12 @@ var parse = (s) => {
     return s;
   }
 
-  var d = {};
-  var ss = bella.decode(s);
-  var a = ss.split('&');
+  let d = {};
+  let ss = bella.decode(s);
+  let a = ss.split('&');
   if(a.length > 0){
-    a.forEach(function(item){
-      var b = item.split('=');
+    a.forEach((item) => {
+      let b = item.split('=');
       if(b.length === 2){
         d[b[0]] = b[1];
       }
@@ -55,38 +56,38 @@ var parse = (s) => {
   return d;
 }
 
-var toCurrency = function(n){
+var toCurrency = (n) => {
   return n.toFixed(2).replace(/./g, (c, i, a) => {
     return i && c !== '.' && ((a.length - i) % 3 === 0) ? ',' + c : c;
   });
 }
 
-var formatCurrency = function(num){
+var formatCurrency = (num) => {
   if(!num || !bella.isNumber(num)){
     return '$0.00';
   }
   return '$' + toCurrency(num);
 }
 
-function Paypal(opts){
-  var mode = opts.mode || 'sandbox';
-  var username = opts.username || '';
-  var password = opts.password || '';
-  var signature = opts.signature || '';
+var Paypal = (opts) => {
+  let mode = opts.mode || 'sandbox';
+  let username = opts.username || '';
+  let password = opts.password || '';
+  let signature = opts.signature || '';
 
-  var baseURL = mode === 'live' ? liveAPIBase : sandboxAPIBase;
+  let baseURL = mode === 'live' ? liveAPIBase : sandboxAPIBase;
 
-  var payload = {
+  let payload = {
     USER: username,
     PWD: password,
     SIGNATURE: signature,
     VERSION: version
   }
 
-  var sendRequest = function(method, params){
-    var o = bella.copies(payload, params);
+  let sendRequest = (method, params) => {
+    let o = bella.copies(payload, params);
     o.METHOD = method;
-    return new Promise(function(resolve, reject){
+    return new Promise((resolve, reject) => {
       return request.post({
         url: baseURL,
         headers: {
@@ -96,12 +97,11 @@ function Paypal(opts){
           'X-PAYPAL-RESPONSE-DATA-FORMAT': 'JSON'
         },
         body: stringify(params)
-      }, function(err, response, body){
+      }, (err, response, body) => {
         if(err){
-          console.trace(err);
           return reject(err);
         }
-        var r = parse(body);
+        let r = parse(body);
         return resolve(r);
       });
     });
@@ -111,6 +111,5 @@ function Paypal(opts){
     formatCurrency: formatCurrency
   }
 }
-
 
 module.exports = Paypal;

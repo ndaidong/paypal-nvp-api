@@ -1,5 +1,5 @@
 {
-  "version": "0.1.11",
+  "version": "0.1.12",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "http://techpush.net",
@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "bellajs": "latest",
-    "bluebird": "latest",
     "request": "latest"
   },
   "devDependencies": {
