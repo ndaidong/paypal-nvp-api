@@ -30,7 +30,7 @@ paypal.request('SetExpressCheckout', query).then((result) => {
 });
 ```
 
-Replace SetExpressCheckout with any available API operations that Paypal supports.
+Replace SetExpressCheckout with any available API operation that Paypal supports.
 
 For more info: https://developer.paypal.com/docs/classic/api/
 
@@ -40,7 +40,7 @@ For more info: https://developer.paypal.com/docs/classic/api/
 
 In which:
 
-- *method*: one of API operation Paypal NVP suppors, such as SetExpressCheckout, DoCapture, SetCustomerBillingAgreement, etc.
+- *method*: one of API operations Paypal NVP suppors, such as SetExpressCheckout, DoCapture, SetCustomerBillingAgreement, etc.
 
 - *query*: a set of parameters you want to send to Paypal API endpoint, rely on which *method* is being used.
 
