@@ -40,9 +40,9 @@ For more info: https://developer.paypal.com/docs/classic/api/
 
 In which:
 
-- *method*: one of API operations Paypal NVP suppors, such as SetExpressCheckout, DoCapture, SetCustomerBillingAgreement, etc.
+- *method*: one of API operations Paypal NVP supports, such as SetExpressCheckout, DoCapture, SetCustomerBillingAgreement, etc.
 
-- *query*: a set of parameters you want to send to Paypal API endpoint, rely on which *method* is being used.
+- *query*: a set of parameters you want to send to Paypal API endpoint, relying on which *method* is being used.
 
 ### formatCurrency(Number amount)
 
