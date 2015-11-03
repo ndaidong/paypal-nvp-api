@@ -63,10 +63,11 @@ var toCurrency = (n) => {
 }
 
 var formatCurrency = (num) => {
-  if(!num || !bella.isNumber(num)){
+  let n = Number(num);
+  if(!n || !bella.isNumber(n)){
     return '$0.00';
   }
-  return '$' + toCurrency(num);
+  return '$' + toCurrency(n);
 }
 
 var Paypal = (opts) => {
