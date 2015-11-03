@@ -51,11 +51,11 @@ Because Paypal API requires its standard format for currency, you can use this u
 ```
 paypal.formatCurrency(12); // = '$12.00'
 paypal.formatCurrency(12.5); // = '$12.50'
-// note that it just accepts Number, so
+// note that only Number is accepted, so
 paypal.formatCurrency('$12.00'); // = '$0.00'
 ```
 
-Currently, this method only supports USD. 
+Currently, this method just supports USD. 
 
 
 # Test
