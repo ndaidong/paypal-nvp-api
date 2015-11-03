@@ -55,6 +55,19 @@ var parse = (s) => {
   return d;
 }
 
+var toCurrency = function(n){
+  return n.toFixed(2).replace(/./g, (c, i, a) => {
+    return i && c !== '.' && ((a.length - i) % 3 === 0) ? ',' + c : c;
+  });
+}
+
+var formatCurrency = function(num){
+  if(!num || !bella.isNumber(num)){
+    return '$0.00';
+  }
+  return '$' + toCurrency(num);
+}
+
 function Paypal(opts){
   var mode = opts.mode || 'sandbox';
   var username = opts.username || '';
@@ -94,7 +107,8 @@ function Paypal(opts){
     });
   }
   return {
-    request: sendRequest
+    request: sendRequest,
+    formatCurrency: formatCurrency
   }
 }
 
