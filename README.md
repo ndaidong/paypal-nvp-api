@@ -24,15 +24,19 @@ let query = {
 }
 
 paypal.request('SetExpressCheckout', query).then((result) => {
-  return resolve(result);
+  console.log(result);
 }).catch((err) => {
-  return reject(err);
+  console.trace(err);
 });
 ```
 
 Replace SetExpressCheckout with any available API operation that Paypal supports.
+Replace username, password and signature with your Paypal app credential Set. 
 
-For more info: https://developer.paypal.com/docs/classic/api/
+For more info: 
+
+- [NVP and SOAP API Reference](https://developer.paypal.com/docs/classic/api/)
+- [Creating and managing NVP/SOAP API credentials](https://developer.paypal.com/docs/classic/api/apiCredentials/)
 
 # API reference
 
@@ -46,7 +50,7 @@ In which:
 
 ### formatCurrency(Number amount)
 
-Because Paypal API requires its standard format for currency, you can use this util to quickly convert any number to Paypal convention.
+Because Paypal API requires its standard format for currency, you can use this util to quickly convert a number to fit Paypal convention.
 
 ```
 paypal.formatCurrency(12); // = '$12.00'
