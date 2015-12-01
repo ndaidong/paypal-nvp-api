@@ -55,6 +55,9 @@ You can use this util to quickly convert a number to standard currency format th
 Return: a string in the format of X,XXX,XX.XX (used in United States, Canada).
 
 ```
+paypal.formatCurrency(123456); // = '123,456.00'
+paypal.formatCurrency(12345); // = '12,345.00'
+paypal.formatCurrency(1234); // = '1,234.00'
 paypal.formatCurrency(12); // = '12.00'
 paypal.formatCurrency(12.5); // = '12.50'
 paypal.formatCurrency('12.00'); // = '12.00'
