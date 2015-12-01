@@ -18,7 +18,7 @@ let config = {
 let paypal = Paypal(config);
 
 let query = {
-  'PAYMENTREQUEST_0_AMT': '$20.00',
+  'PAYMENTREQUEST_0_AMT': '20.00',
   'PAYMENTREQUEST_0_CURRENCYCODE': 'USD',
   'PAYMENTREQUEST_0_PAYMENTACTION': 'Sale'
 }
