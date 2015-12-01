@@ -83,8 +83,9 @@ var Paypal = (opts) => {
     VERSION: version
   }
 
-  let sendRequest = (method, params = {}) => {
-    let o = bella.copies(payload, params);
+  let sendRequest = (method, params) => {
+    let pr = params || {};
+    let o = bella.copies(payload, pr);
     o.METHOD = method;
     return new Promise((resolve, reject) => {
       return request.post({
@@ -95,7 +96,7 @@ var Paypal = (opts) => {
           'X-PAYPAL-SECURITY-SIGNATURE': o.SIGNATURE,
           'X-PAYPAL-RESPONSE-DATA-FORMAT': 'JSON'
         },
-        body: stringify(params)
+        body: stringify(pr)
       }, (err, response, body) => {
         if(err){
           return reject(err);
