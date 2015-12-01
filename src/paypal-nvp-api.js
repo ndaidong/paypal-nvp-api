@@ -56,21 +56,18 @@ var parse = (s) => {
   return d;
 }
 
-var toCurrency = (n) => {
+var formatCurrency = (num) => {
+  let n = Number(num);
+  if(!n || !bella.isNumber(n) || n < 0){
+    return '0.00';
+  }
   return n.toFixed(2).replace(/./g, (c, i, a) => {
     return i && c !== '.' && ((a.length - i) % 3 === 0) ? ',' + c : c;
   });
 }
 
-var formatCurrency = (num) => {
-  let n = Number(num);
-  if(!n || !bella.isNumber(n)){
-    return '$0.00';
-  }
-  return '$' + toCurrency(n);
-}
-
 var Paypal = (opts) => {
+
   let mode = opts.mode || 'sandbox';
   let username = opts.username || '';
   let password = opts.password || '';

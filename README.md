@@ -50,17 +50,16 @@ In which:
 
 ### formatCurrency(Number amount)
 
-Because Paypal API requires its standard format for currency, you can use this util to quickly convert a number to fit Paypal convention.
+You can use this util to quickly convert a number to standard currency format that fits Paypal convention.
+
+Return: a string in the format of X,XXX,XX.XX (used in United States, Canada).
 
 ```
-paypal.formatCurrency(12); // = '$12.00'
-paypal.formatCurrency(12.5); // = '$12.50'
+paypal.formatCurrency(12); // = '12.00'
+paypal.formatCurrency(12.5); // = '12.50'
 // note that only Number is accepted, so
-paypal.formatCurrency('$12.00'); // = '$0.00'
+paypal.formatCurrency('12.00'); // = '12.00'
 ```
-
-Currently, this method just supports USD. 
-
 
 # Test
 
