@@ -1,6 +1,7 @@
 # paypal-nvp-api
 Node.js wrapper for the Paypal Name-Value Pair — NVP
 
+[![NPM](https://badge.fury.io/js/paypal-nvp-api.svg)](https://badge.fury.io/js/paypal-nvp-api) ![Travis](https://travis-ci.org/ndaidong/paypal-nvp-api.svg?branch=master)
 
 # Usage
 
