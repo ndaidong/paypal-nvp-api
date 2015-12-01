@@ -57,7 +57,6 @@ Return: a string in the format of X,XXX,XX.XX (used in United States, Canada).
 ```
 paypal.formatCurrency(12); // = '12.00'
 paypal.formatCurrency(12.5); // = '12.50'
-// note that only Number is accepted, so
 paypal.formatCurrency('12.00'); // = '12.00'
 ```
 
