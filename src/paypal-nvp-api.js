@@ -7,6 +7,7 @@
 'use strict'; // to use "let" keyword
 
 var bella = require('bellajs');
+var Promise = require('bluebird');
 var request = require('request');
 
 var version = 124;
