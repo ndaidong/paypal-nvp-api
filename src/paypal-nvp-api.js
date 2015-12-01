@@ -83,7 +83,7 @@ var Paypal = (opts) => {
     VERSION: version
   }
 
-  let sendRequest = (method, params) => {
+  let sendRequest = (method, params = {}) => {
     let o = bella.copies(payload, params);
     o.METHOD = method;
     return new Promise((resolve, reject) => {
