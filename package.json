@@ -1,5 +1,5 @@
 {
-  "version": "0.1.25",
+  "version": "0.1.26",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "http://techpush.net",
@@ -24,6 +24,15 @@
     "mocha": "latest",
     "chai": "latest"
   },
+  "keywords": [
+    "Paypal",
+    "payment",
+    "NVP",
+    "Name-Value Pair",
+    "API",
+    "Paypal Classic API",
+    "util"
+  ],
   "license": "MIT",
   "maintainers": [
     "ndaidong <ndaidong@gmail.com>"
