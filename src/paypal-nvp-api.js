@@ -16,56 +16,57 @@ var sandboxAPIBase = 'https://api-3t.sandbox.paypal.com/nvp';
 
 var stringify = (data) => {
   let s = '';
-  if(bella.isString(data)){
+  if (bella.isString(data)) {
     s = data;
-  }
-  else if(bella.isArray(data) || bella.isObject(data)){
+  } else if (bella.isArray(data) || bella.isObject(data)) {
     let ar = [];
-    for(let k in data){
-      let val = data[k];
-      if(bella.isString(val)){
-        val = bella.encode(val);
+    for (let k in data) {
+      if (bella.hasProperty(data, k)) {
+        let val = data[k];
+        if (bella.isString(val)) {
+          val = bella.encode(val);
+        } else if (bella.isArray(val) || bella.isObject(val)) {
+          val = JSON.stringify(val);
+        }
+        ar.push(bella.encode(k) + '=' + val);
       }
-      else if(bella.isArray(val) || bella.isObject(val)){
-        val = JSON.stringify(val);
-      }
-      ar.push(bella.encode(k) + '=' + val);
+
     }
-    if(ar.length > 0){
+    if (ar.length > 0) {
       s = ar.join('&');
     }
   }
   return s;
-}
+};
 
 var parse = (s) => {
-  if(!bella.isString(s)){
+  if (!bella.isString(s)) {
     return s;
   }
 
   let d = {};
   let ss = bella.decode(s);
   let a = ss.split('&');
-  if(a.length > 0){
+  if (a.length > 0) {
     a.forEach((item) => {
       let b = item.split('=');
-      if(b.length === 2){
+      if (b.length === 2) {
         d[b[0]] = b[1];
       }
     });
   }
   return d;
-}
+};
 
 var formatCurrency = (num) => {
   let n = Number(num);
-  if(!n || !bella.isNumber(n) || n < 0){
+  if (!n || !bella.isNumber(n) || n < 0) {
     return '0.00';
   }
   return n.toFixed(2).replace(/./g, (c, i, a) => {
-    return i && c !== '.' && ((a.length - i) % 3 === 0) ? ',' + c : c;
+    return i && c !== '.' && (a.length - i) % 3 === 0 ? ',' + c : c;
   });
-}
+};
 
 var Paypal = (opts) => {
 
@@ -81,7 +82,7 @@ var Paypal = (opts) => {
     PWD: password,
     SIGNATURE: signature,
     VERSION: version
-  }
+  };
 
   let sendRequest = (method, params) => {
     let pr = params || {};
@@ -98,18 +99,18 @@ var Paypal = (opts) => {
         },
         body: stringify(pr)
       }, (err, response, body) => {
-        if(err){
+        if (err) {
           return reject(err);
         }
         let r = parse(body);
         return resolve(r);
       });
     });
-  }
+  };
   return {
     request: sendRequest,
     formatCurrency: formatCurrency
-  }
-}
+  };
+};
 
 module.exports = Paypal;
