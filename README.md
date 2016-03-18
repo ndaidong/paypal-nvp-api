@@ -5,6 +5,8 @@ Node.js wrapper for the Paypal Name-Value Pair — NVP
 
 # Usage
 
+Import module and init an instance with given config:
+
 ```
 import Paypal from 'paypal-nvp-api';
 
@@ -17,12 +19,43 @@ let config = {
 }
 
 let paypal = Paypal(config);
+```
+
+Build query and send to Paypal server:
+
+```
+paypal.request('GetBalance', {}).then((result) => {
+  console.log(result);
+}).catch((err) => {
+  console.trace(err);
+});
+```
+
+The 'result' looks like this:
+
+```
+{
+  L_AMT0: '71084.27',
+  L_CURRENCYCODE0: 'USD',
+  TIMESTAMP: '2016-03-18T09:48:16Z',
+  CORRELATIONID: 'e3de6137ce65c',
+  ACK: 'Success',
+  VERSION: '124',
+  BUILD: '18316154'
+}
+```
+
+Another example with "SetExpressCheckout" operation:
+
+```
 
 let query = {
   'PAYMENTREQUEST_0_AMT': '20.00',
   'PAYMENTREQUEST_0_CURRENCYCODE': 'USD',
-  'PAYMENTREQUEST_0_PAYMENTACTION': 'Sale'
-}
+  'PAYMENTREQUEST_0_PAYMENTACTION': 'Sale',
+  'RETURNURL': 'http://google.com/test/onreturn',
+  'CANCELURL': 'http://google.com/test/oncancel'
+};
 
 paypal.request('SetExpressCheckout', query).then((result) => {
   console.log(result);
@@ -31,13 +64,20 @@ paypal.request('SetExpressCheckout', query).then((result) => {
 });
 ```
 
-Replace SetExpressCheckout with any available API operation that Paypal supports.
-Replace username, password and signature with your Paypal app credential Set. 
+In this case, it returns something like this:
 
-For more info: 
+```
+{
+  TOKEN: 'EC-5Y171147E8077933D',
+  TIMESTAMP: '2016-03-18T09:58:38Z',
+  CORRELATIONID: 'e8289e4235624',
+  ACK: 'Success',
+  VERSION: '124',
+  BUILD: '18316154'
+}
 
-- [NVP and SOAP API Reference](https://developer.paypal.com/docs/classic/api/)
-- [Creating and managing NVP/SOAP API credentials](https://developer.paypal.com/docs/classic/api/apiCredentials/)
+```
+
 
 # API reference
 
@@ -46,8 +86,12 @@ For more info:
 In which:
 
 - *method*: one of API operations Paypal NVP supports, such as SetExpressCheckout, DoCapture, SetCustomerBillingAgreement, etc.
-
 - *query*: a set of parameters you want to send to Paypal API endpoint, relying on which *method* is being used.
+
+For more info:
+
+- [NVP and SOAP API Reference](https://developer.paypal.com/docs/classic/api/)
+- [Creating and managing NVP/SOAP API credentials](https://developer.paypal.com/docs/classic/api/apiCredentials/)
 
 ### formatCurrency(Number amount)
 
@@ -66,5 +110,7 @@ paypal.formatCurrency('12.00'); // = '12.00'
 
 # Test
 
-Module has not been fully tested yet.
-
+```
+npm install
+npm test
+```

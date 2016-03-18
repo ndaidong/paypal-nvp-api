@@ -98,7 +98,7 @@ describe('.formatCurrency()', () => {
       value: 'ABC',
       result: '0.00'
     }
-  ]
+  ];
 
   sample.forEach((item) => {
     let v = item.value;
