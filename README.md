@@ -116,3 +116,8 @@ paypal.formatCurrency('12.00'); // = '12.00'
 npm install
 npm test
 ```
+
+
+# License
+
+The MIT License (MIT)
