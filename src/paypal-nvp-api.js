@@ -45,13 +45,12 @@ var parse = (s) => {
   }
 
   let d = {};
-  let ss = bella.decode(s);
-  let a = ss.split('&');
+  let a = s.split('&');
   if (a.length > 0) {
     a.forEach((item) => {
       let b = item.split('=');
       if (b.length === 2) {
-        d[b[0]] = b[1];
+        d[b[0]] = bella.decode(b[1]);
       }
     });
   }
