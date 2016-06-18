@@ -2,12 +2,12 @@
   "version": "0.2.31",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
-  "homepage": "http://techpush.net",
+  "homepage": "https://www.npmjs.com/package/paypal-nvp-api",
   "repository": {
     "type": "git",
     "url": "git@github.com:ndaidong/paypal-nvp-api.git"
   },
-  "author": "Dong Nguyen <ndaidong@gmail.com> (https://twitter.com/ndaidong)",
+  "author": "@ndaidong",
   "main": "./index.js",
   "engines": {
     "node": ">= 4.0"

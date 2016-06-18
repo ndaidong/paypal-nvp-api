@@ -4,13 +4,14 @@ Node.js wrapper for the Paypal Name-Value Pair — NVP
 [![NPM](https://badge.fury.io/js/paypal-nvp-api.svg)](https://badge.fury.io/js/paypal-nvp-api)
 ![Travis](https://travis-ci.org/ndaidong/paypal-nvp-api.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/ndaidong/paypal-nvp-api/badge.svg?branch=master)](https://coveralls.io/github/ndaidong/paypal-nvp-api?branch=master)
+![devDependency Status](https://david-dm.org/ndaidong/paypal-nvp-api.svg)
 
 # Usage
 
 Import module and init an instance with given config:
 
 ```
-import Paypal from 'paypal-nvp-api';
+var Paypal = require('paypal-nvp-api');
 
 let config = {
   mode: 'sandbox', // or 'live'
@@ -113,6 +114,8 @@ paypal.formatCurrency('12.00'); // = '12.00'
 # Test
 
 ```
+git clone https://github.com/ndaidong/paypal-nvp-api.git
+cd paypal-nvp-api
 npm install
 npm test
 ```
