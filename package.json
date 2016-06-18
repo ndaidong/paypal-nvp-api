@@ -19,9 +19,9 @@
     "coveralls": "npm run report && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
-    "bellajs": "latest",
-    "bluebird": "latest",
-    "request": "latest"
+    "bellajs": "5.1.3",
+    "bluebird": "3.4.0",
+    "request": "2.72.0"
   },
   "devDependencies": {
     "chai": "latest",
