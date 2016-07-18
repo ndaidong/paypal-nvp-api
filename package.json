@@ -1,5 +1,5 @@
 {
-  "version": "0.2.31",
+  "version": "1.0.0",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "https://www.npmjs.com/package/paypal-nvp-api",
@@ -10,24 +10,25 @@
   "author": "@ndaidong",
   "main": "./index.js",
   "engines": {
-    "node": ">= 4.0"
+    "node": ">= 6.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha",
-    "coverage": "./node_modules/.bin/nyc mocha",
-    "report": "npm run coverage && ./node_modules/.bin/nyc report --reporter=lcov",
-    "coveralls": "npm run report && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "test": "snyk test && tape test/start.js | tap-spec",
+    "coverage": "nyc tape test/start.js | tap-spec",
+    "report": "npm run coverage && nyc report --reporter=lcov",
+    "coveralls": "npm run report && cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
-    "bellajs": "5.1.3",
-    "bluebird": "3.4.0",
-    "request": "2.72.0"
+    "bellajs": "5.3.0",
+    "promise-wtf": "0.1.25",
+    "request": "2.73.0"
   },
   "devDependencies": {
-    "chai": "latest",
     "coveralls": "latest",
-    "mocha": "latest",
-    "nyc": "latest"
+    "nyc": "latest",
+    "snyk": "latest",
+    "tap-spec": "latest",
+    "tape": "latest"
   },
   "keywords": [
     "Paypal",

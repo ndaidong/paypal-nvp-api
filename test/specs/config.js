@@ -1,4 +1,5 @@
 module.exports = {
+  rootDir: '../../../src/',
   mode: 'sandbox',
   track: 'https://www.sandbox.paypal.com',
   username: 'alex-facilitator_api1.itravellocal.com',
