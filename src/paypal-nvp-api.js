@@ -4,10 +4,8 @@
  * Refer: https://developer.paypal.com/docs/classic/api/
  **/
 
-'use strict'; // to use "let" keyword
-
 var bella = require('bellajs');
-var Promise = require('bluebird');
+var Promise = require('promise-wtf');
 var request = require('request');
 
 var version = 124;

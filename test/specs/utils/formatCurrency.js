@@ -2,28 +2,19 @@
  * Testing
  * @ndaidong
  */
-/* global describe it */
-/* eslint no-undefined: 0*/
-/* eslint no-array-constructor: 0*/
-/* eslint no-new-func: 0*/
-
-'use strict';
 
 var path = require('path');
-var chai = require('chai');
-var bella = require('bellajs');
 
-chai.should();
-var expect = chai.expect;
+var bella = require('bellajs');
+var test = require('tape');
 
 var config = require('../config');
+var rootDir = config.rootDir;
 
-var rootDir = '../../../src/';
+var nvp = require(path.join(rootDir, 'paypal-nvp-api'));
+var paypal = nvp(config);
 
-var Paypal = require(path.join(rootDir, 'paypal-nvp-api'));
-var paypal = Paypal(config);
-
-describe('.formatCurrency()', () => {
+test('.formatCurrency()', (assert) => {
 
   let sample = [
     {
@@ -102,13 +93,9 @@ describe('.formatCurrency()', () => {
 
   sample.forEach((item) => {
     let v = item.value;
-    describe(' / paypal.formatCurrency(' + (bella.isString(v) ? `'${v}'` : v) + ')', () => {
-
-      let result = paypal.formatCurrency(v);
-      it(' should be "' + item.result + '"', (done) => {
-        expect(result).to.equal(item.result);
-        done();
-      });
-    });
+    let result = paypal.formatCurrency(v);
+    assert.deepEquals(result, item.result, ' / paypal.formatCurrency(' + (bella.isString(v) ? `'${v}'` : v) + ')');
   });
+
+  assert.end();
 });
