@@ -2,7 +2,6 @@
  * Testing
  * @ndaidong
  */
-
 var path = require('path');
 
 var bella = require('bellajs');

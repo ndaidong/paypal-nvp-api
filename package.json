@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.02",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "https://www.npmjs.com/package/paypal-nvp-api",
@@ -13,7 +13,8 @@
     "node": ">= 6.0"
   },
   "scripts": {
-    "test": "snyk test && tape test/start.js | tap-spec",
+    "lint": "eslint *.js src/*.js test/*.js test/**/*.js test/**/**/*.js",
+    "test": "npm run lint && snyk test && tape test/start.js | tap-spec",
     "coverage": "nyc tape test/start.js | tap-spec",
     "report": "npm run coverage && nyc report --reporter=lcov",
     "coveralls": "npm run report && cat ./coverage/lcov.info | coveralls"
