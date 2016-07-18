@@ -106,7 +106,7 @@ var Paypal = (opts) => {
   };
   return {
     request: sendRequest,
-    formatCurrency: formatCurrency
+    formatCurrency
   };
 };
 
