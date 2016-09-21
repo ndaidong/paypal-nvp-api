@@ -23,7 +23,7 @@
     "coveralls": "npm test && cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
-    "bellajs": "^5.4.1.5",
+    "bellajs": "^5.4.15",
     "promise-wtf": "^1.1.0",
     "request": "^2.75.0"
   },
