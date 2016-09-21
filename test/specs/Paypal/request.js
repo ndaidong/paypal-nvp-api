@@ -67,3 +67,48 @@ test('.SetExpressCheckout()', (assert) => {
     return false;
   }).finally(assert.end);
 });
+
+
+test('Call a unexist method', (assert) => {
+
+  paypal.request('CallUnexistMethod', {}).then((re) => {
+    assert.ok(bella.isObject(re), 'Result should be an object');
+    assert.equals(re.ACK, 'Failure', 'It must be an error');
+  }).catch((e) => {
+    console.log(e);
+    return false;
+  }).finally(assert.end);
+
+});
+
+test('Call with invalid params', (assert) => {
+
+  paypal.request('GetBalance', 'noop').then((re) => {
+    assert.ok(bella.isObject(re), 'Result should be an object');
+    assert.equals(re.ACK, 'Failure', 'It must be an error');
+  }).catch((e) => {
+    console.log(e);
+    return false;
+  }).finally(assert.end);
+
+});
+
+test('Call with instance initialized from the bad configs', (assert) => {
+  let fakePaypal = nvp({
+    rootDir: '../../../src/',
+    mode: 'sandbox',
+    track: 'https://www.sandbox.paypal.com',
+    username: 'facilitator_api1.itravellocal.com',
+    password: 'AYKNJZZE42ASU691',
+    signature: 'A0aEilikhBmwfK.NlduDjCbsdgRdT8VDPMDksDhGsHmLBECu80Qtru19'
+  });
+
+  fakePaypal.request('GetBalance', {}).then((re) => {
+    assert.ok(bella.isObject(re), 'Result should be an object');
+    assert.equals(re.ACK, 'Failure', 'It must be an error');
+  }).catch((e) => {
+    console.log(e);
+    return false;
+  }).finally(assert.end);
+
+});
