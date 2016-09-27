@@ -1,5 +1,5 @@
 {
-  "version": "1.2.2",
+  "version": "1.2.21",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "https://www.npmjs.com/package/paypal-nvp-api",
@@ -23,9 +23,9 @@
     "coveralls": "npm test && cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
-    "bellajs": "^5.4.15",
-    "promise-wtf": "^1.1.0",
-    "request": "^2.75.0"
+    "bellajs": "5.*.*",
+    "promise-wtf": "1.*.*",
+    "request": "2.*.*"
   },
   "devDependencies": {
     "coveralls": "latest",
