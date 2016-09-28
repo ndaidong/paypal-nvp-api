@@ -1,5 +1,5 @@
 {
-  "version": "1.2.21",
+  "version": "1.2.22",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "https://www.npmjs.com/package/paypal-nvp-api",
@@ -46,14 +46,5 @@
     "Paypal Classic API",
     "util"
   ],
-  "license": "MIT",
-  "maintainers": [
-    "ndaidong <ndaidong@gmail.com>"
-  ],
-  "bugs": {
-    "url": "https://github.com/ndaidong/paypal-nvp-api/issues"
-  },
-  "directories": {
-    "test": "test"
-  }
+  "license": "MIT"
 }
