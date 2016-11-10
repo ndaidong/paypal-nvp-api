@@ -12,7 +12,7 @@ Node.js wrapper for the Paypal Name-Value Pair — NVP
 
 Import module and init an instance with given config:
 
-```
+```js
 var Paypal = require('paypal-nvp-api');
 
 let config = {
@@ -28,7 +28,7 @@ let paypal = Paypal(config);
 
 Build query and send to Paypal server:
 
-```
+```js
 paypal.request('GetBalance', {}).then((result) => {
   console.log(result);
 }).catch((err) => {
@@ -38,7 +38,7 @@ paypal.request('GetBalance', {}).then((result) => {
 
 The 'result' looks like this:
 
-```
+```js
 {
   L_AMT0: '71084.27',
   L_CURRENCYCODE0: 'USD',
@@ -52,8 +52,7 @@ The 'result' looks like this:
 
 Another example with "SetExpressCheckout" operation:
 
-```
-
+```js
 let query = {
   'PAYMENTREQUEST_0_AMT': '20.00',
   'PAYMENTREQUEST_0_CURRENCYCODE': 'USD',
@@ -71,7 +70,7 @@ paypal.request('SetExpressCheckout', query).then((result) => {
 
 In this case, it returns something like this:
 
-```
+```js
 {
   TOKEN: 'EC-5Y171147E8077933D',
   TIMESTAMP: '2016-03-18T09:58:38Z',
@@ -104,7 +103,7 @@ You can use this util to quickly convert a number to standard currency format th
 
 Return: a string in the format of X,XXX,XX.XX (used in United States, Canada).
 
-```
+```js
 paypal.formatCurrency(123456); // = '123,456.00'
 paypal.formatCurrency(12345); // = '12,345.00'
 paypal.formatCurrency(1234); // = '1,234.00'
