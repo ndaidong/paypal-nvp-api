@@ -8,7 +8,7 @@ var bella = require('bellajs');
 var Promise = require('promise-wtf');
 var request = require('request');
 
-var version = 124;
+var version = 204;
 var liveAPIBase = 'https://api-3t.paypal.com/nvp';
 var sandboxAPIBase = 'https://api-3t.sandbox.paypal.com/nvp';
 
