@@ -4,29 +4,41 @@
  * Refer: https://developer.paypal.com/docs/classic/api/
  **/
 
+var promiseFinally = require('promise.prototype.finally');
+promiseFinally.shim();
+
 var bella = require('bellajs');
-var Promise = require('promise-wtf');
 var request = require('request');
 
 var version = 204;
 var liveAPIBase = 'https://api-3t.paypal.com/nvp';
 var sandboxAPIBase = 'https://api-3t.sandbox.paypal.com/nvp';
 
+var {
+  isString,
+  isNumber,
+  isArray,
+  isObject,
+  hasProperty,
+  encode,
+  decode
+} = bella;
+
 var stringify = (data) => {
   let s = '';
-  if (bella.isString(data)) {
+  if (isString(data)) {
     s = data;
-  } else if (bella.isArray(data) || bella.isObject(data)) {
+  } else if (isArray(data) || isObject(data)) {
     let ar = [];
     for (let k in data) {
-      if (bella.hasProperty(data, k)) {
+      if (hasProperty(data, k)) {
         let val = data[k];
-        if (bella.isString(val)) {
-          val = bella.encode(val);
-        } else if (bella.isArray(val) || bella.isObject(val)) {
+        if (isString(val)) {
+          val = encode(val);
+        } else if (isArray(val) || isObject(val)) {
           val = JSON.stringify(val);
         }
-        ar.push(bella.encode(k) + '=' + val);
+        ar.push(encode(k) + '=' + val);
       }
 
     }
@@ -38,17 +50,13 @@ var stringify = (data) => {
 };
 
 var parse = (s) => {
-  if (!bella.isString(s)) {
-    return s;
-  }
-
   let d = {};
   let a = s.split('&');
   if (a.length > 0) {
     a.forEach((item) => {
       let b = item.split('=');
       if (b.length === 2) {
-        d[b[0]] = bella.decode(b[1]);
+        d[b[0]] = decode(b[1]);
       }
     });
   }
@@ -57,7 +65,7 @@ var parse = (s) => {
 
 var formatCurrency = (num) => {
   let n = Number(num);
-  if (!n || !bella.isNumber(n) || n < 0) {
+  if (!n || !isNumber(n) || n < 0) {
     return '0.00';
   }
   return n.toFixed(2).replace(/./g, (c, i, a) => {
@@ -65,12 +73,14 @@ var formatCurrency = (num) => {
   });
 };
 
-var Paypal = (opts) => {
+var Paypal = (opts = {}) => {
 
-  let mode = opts.mode || 'sandbox';
-  let username = opts.username || '';
-  let password = opts.password || '';
-  let signature = opts.signature || '';
+  let {
+    mode = 'sandbox',
+    username = '',
+    password = '',
+    signature = ''
+  } = opts;
 
   let baseURL = mode === 'live' ? liveAPIBase : sandboxAPIBase;
 
