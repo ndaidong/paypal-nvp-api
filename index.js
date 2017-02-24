@@ -3,5 +3,7 @@
  * @ndaidong
 **/
 
-exports = module.exports = require('./src/paypal-nvp-api');
-exports.version = require('./package').version;
+var main = require('./src/paypal-nvp-api');
+main.version = require('./package').version;
+
+module.exports = main;

@@ -1,5 +1,5 @@
 {
-  "version": "1.2.25",
+  "version": "1.2.26",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "https://www.npmjs.com/package/paypal-nvp-api",
@@ -14,28 +14,28 @@
   },
   "scripts": {
     "lint": "eslint ./src ./test",
-    "snyk": "snyk test",
+    "nsp": "nsp check --output checkstyle",
     "tape": "nyc tape test/start.js | tap-spec",
     "report": "nyc report --reporter=lcov",
-    "pretest": "npm run lint && npm run snyk",
+    "pretest": "npm run lint && npm run nsp",
     "test": "npm run tape",
     "posttest": "npm run report",
     "coveralls": "npm test && cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
-    "bellajs": "6.*.*",
-    "promise-wtf": "1.*.*",
-    "request": "2.*.*"
+    "bellajs": "6.x.x",
+    "promise.prototype.finally": "2.x.x",
+    "request": "2.x.x"
   },
   "devDependencies": {
-    "coveralls": "latest",
-    "eslint": "latest",
-    "eslint-config-ggc": "latest",
-    "nock": "latest",
-    "nyc": "latest",
-    "snyk": "latest",
-    "tap-spec": "latest",
-    "tape": "latest"
+    "coveralls": "2.x.x",
+    "eslint": "3.x.x",
+    "eslint-config-ggc": "1.x.x",
+    "nock": "9.x.x",
+    "nsp": "2.x.x",
+    "nyc": "10.x.x",
+    "tap-spec": "4.x.x",
+    "tape": "4.x.x"
   },
   "keywords": [
     "Paypal",
