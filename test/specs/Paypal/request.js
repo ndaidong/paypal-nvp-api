@@ -2,21 +2,17 @@
  * Testing
  * @ndaidong
  */
-var path = require('path');
 
 var bella = require('bellajs');
 var test = require('tape');
 
 var config = require('../config');
-var rootDir = config.rootDir;
 
-var nvp = require(path.join(rootDir, 'paypal-nvp-api'));
+var nvp = config.main;
 var paypal = nvp(config);
 
-var hasRequiredKeys = (o, keys) => {
-  return keys.every((k) => {
-    return bella.hasProperty(o, k);
-  });
+var hasRequiredKey = (o, k) => {
+  return bella.hasProperty(o, k);
 };
 
 test('.GetBalance()', (assert) => {
@@ -32,7 +28,10 @@ test('.GetBalance()', (assert) => {
 
   paypal.request('GetBalance', {}).then((re) => {
     assert.ok(bella.isObject(re), 'Result should be an object');
-    assert.ok(hasRequiredKeys(re, props), 'Result should contain regular properties');
+    props.forEach((k) => {
+      assert.ok(hasRequiredKey(re, k), `Result must have the required property "${k}"`);
+    });
+
   }).catch((e) => {
     console.log(e);
     return false;
@@ -61,7 +60,9 @@ test('.SetExpressCheckout()', (assert) => {
 
   paypal.request('SetExpressCheckout', query).then((re) => {
     assert.ok(bella.isObject(re), 'Result should be an object');
-    assert.ok(hasRequiredKeys(re, props), 'Result should contain regular properties');
+    props.forEach((k) => {
+      assert.ok(hasRequiredKey(re, k), `Result must have the required property "${k}"`);
+    });
   }).catch((e) => {
     console.log(e);
     return false;
@@ -94,15 +95,7 @@ test('Call with invalid params', (assert) => {
 });
 
 test('Call with instance initialized from the bad configs', (assert) => {
-  let fakePaypal = nvp({
-    rootDir: '../../../src/',
-    mode: 'sandbox',
-    track: 'https://www.sandbox.paypal.com',
-    username: 'facilitator_api1.itravellocal.com',
-    password: 'AYKNJZZE42ASU691',
-    signature: 'A0aEilikhBmwfK.NlduDjCbsdgRdT8VDPMDksDhGsHmLBECu80Qtru19'
-  });
-
+  let fakePaypal = nvp();
   fakePaypal.request('GetBalance', {}).then((re) => {
     assert.ok(bella.isObject(re), 'Result should be an object');
     assert.equals(re.ACK, 'Failure', 'It must be an error');

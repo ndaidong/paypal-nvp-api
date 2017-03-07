@@ -3,15 +3,12 @@
  * @ndaidong
  */
 
-var path = require('path');
-
 var bella = require('bellajs');
 var test = require('tape');
 
 var config = require('../config');
-var rootDir = config.rootDir;
 
-var nvp = require(path.join(rootDir, 'paypal-nvp-api'));
+var nvp = config.main;
 var paypal = nvp(config);
 
 test('.formatCurrency()', (assert) => {
