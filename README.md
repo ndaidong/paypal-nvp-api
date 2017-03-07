@@ -17,7 +17,6 @@ var Paypal = require('paypal-nvp-api');
 
 let config = {
   mode: 'sandbox', // or 'live'
-  track: 'https://www.sandbox.paypal.com', // or 'https://www.paypal.com' if live
   username: 'someone.itravellocal.com',
   password: 'DYKNJZZE42ASN699',
   signature: 'A0aEilikhBmwfK.NlduDjCbsdgXdA8VDPMDksDhGsHmLQECu80Qtru09'

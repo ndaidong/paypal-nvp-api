@@ -5,7 +5,7 @@ var path = require('path');
  * Import specs
  */
 
-var dirs = ['', 'utils', 'Paypal'];
+var dirs = ['', 'Paypal', 'utils'];
 dirs.forEach((dir) => {
   let where = './test/specs/' + dir;
   if (fs.existsSync(where)) {
