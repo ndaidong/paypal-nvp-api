@@ -5,10 +5,10 @@ Node.js wrapper for the Paypal Name-Value Pair — NVP
 [![Build Status](https://travis-ci.org/ndaidong/paypal-nvp-api.svg?branch=master)](https://travis-ci.org/ndaidong/paypal-nvp-api)
 [![Coverage Status](https://coveralls.io/repos/github/ndaidong/paypal-nvp-api/badge.svg?branch=master)](https://coveralls.io/github/ndaidong/paypal-nvp-api?branch=master)
 [![Dependency Status](https://gemnasium.com/badges/github.com/ndaidong/paypal-nvp-api.svg)](https://gemnasium.com/github.com/ndaidong/paypal-nvp-api)
-[![Known Vulnerabilities](https://snyk.io/test/npm/paypal-nvp-api/badge.svg)](https://snyk.io/test/npm/paypal-nvp-api)
+[![NSP Status](https://nodesecurity.io/orgs/techpush/projects/b6471f27-370b-4f79-badd-75cd5401d826/badge)](https://nodesecurity.io/orgs/techpush/projects/b6471f27-370b-4f79-badd-75cd5401d826)
 
 
-# Usage
+### Usage
 
 Import module and init an instance with given config:
 
@@ -82,7 +82,7 @@ In this case, it returns something like this:
 ```
 
 
-# API reference
+### APIs
 
 ### request(String method, Object query)
 
@@ -111,7 +111,7 @@ paypal.formatCurrency(12.5); // = '12.50'
 paypal.formatCurrency('12.00'); // = '12.00'
 ```
 
-# Test
+### Test
 
 ```
 git clone https://github.com/ndaidong/paypal-nvp-api.git
@@ -121,6 +121,6 @@ npm test
 ```
 
 
-# License
+## License
 
 The MIT License (MIT)

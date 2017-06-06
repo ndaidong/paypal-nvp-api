@@ -10,10 +10,13 @@ const BASE_API_SANDBOX = 'https://api-3t.sandbox.paypal.com/nvp';
 const TRACKING_URL_LIVE = 'https://www.paypal.com';
 const TRACKING_URL_SANDBOX = 'https://www.sandbox.paypal.com';
 
-var promiseFinally = require('promise.prototype.finally');
-promiseFinally.shim();
+global.Promise = require('promise-wtf');
 
-var bella = require('bellajs');
+var {
+  isObject,
+  copies
+} = require('bellajs');
+
 var request = require('request');
 
 var {
@@ -41,11 +44,16 @@ var Paypal = (opts = {}) => {
     VERSION
   };
 
-  let sendRequest = (method, params) => {
-    let pr = params || {};
-    let o = bella.copies(payload, pr);
-    o.METHOD = method;
+  let sendRequest = (method, params = {}) => {
     return new Promise((resolve, reject) => {
+
+      if (!isObject(params)) {
+        return reject(new Error('Params must be an object'));
+      }
+
+      let o = copies(payload, params);
+      o.METHOD = method;
+
       return request.post({
         url: baseURL,
         headers: {
@@ -54,10 +62,16 @@ var Paypal = (opts = {}) => {
           'X-PAYPAL-SECURITY-SIGNATURE': o.SIGNATURE,
           'X-PAYPAL-RESPONSE-DATA-FORMAT': 'JSON'
         },
-        body: stringify(pr)
+        body: stringify(params)
       }, (err, response, body) => {
         if (err) {
           return reject(err);
+        }
+        let {
+          statusCode
+        } = response;
+        if (statusCode !== 200) {
+          return reject(new Error(`Error: Response error with code: ${statusCode}`));
         }
         let r = parse(body);
         return resolve(r);
