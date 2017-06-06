@@ -1,5 +1,5 @@
 {
-  "version": "1.2.31",
+  "version": "1.2.32",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "https://www.npmjs.com/package/paypal-nvp-api",
@@ -20,7 +20,6 @@
     "pretest": "npm run lint && npm run nsp",
     "test": "npm run tape",
     "posttest": "CODECOV_TOKEN=0ad639d1-d519-4946-a361-725e22ec53d6 npm run report",
-    "coveralls": "npm test && cat ./coverage/lcov.info | coveralls",
     "reset": "node reset"
   },
   "dependencies": {
