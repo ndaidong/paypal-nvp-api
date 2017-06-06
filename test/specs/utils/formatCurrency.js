@@ -3,8 +3,11 @@
  * @ndaidong
  */
 
-var bella = require('bellajs');
 var test = require('tape');
+
+var {
+  isString
+} = require('bellajs');
 
 var config = require('../config');
 
@@ -91,7 +94,7 @@ test('.formatCurrency()', (assert) => {
   sample.forEach((item) => {
     let v = item.value;
     let result = paypal.formatCurrency(v);
-    assert.deepEquals(result, item.result, ' / paypal.formatCurrency(' + (bella.isString(v) ? `'${v}'` : v) + ')');
+    assert.deepEquals(result, item.result, ' / paypal.formatCurrency(' + (isString(v) ? `'${v}'` : v) + ')');
   });
 
   assert.end();
