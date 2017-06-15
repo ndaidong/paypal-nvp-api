@@ -3,6 +3,8 @@
  * @ndaidong
  */
 
+/* eslint-disable no-console */
+
 var test = require('tape');
 var nock = require('nock');
 
@@ -126,4 +128,3 @@ test('When Paypal returns error', (assert) => {
   }).finally(assert.end);
 
 });
-
