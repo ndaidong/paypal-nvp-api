@@ -1,5 +1,5 @@
 {
-  "version": "1.2.32",
+  "version": "1.2.33",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "https://www.npmjs.com/package/paypal-nvp-api",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "codecov": "2.x.x",
-    "eslint": "3.x.x",
+    "eslint": "4.x.x",
     "eslint-config-ggc": "1.x.x",
     "nock": "9.x.x",
     "nsp": "2.x.x",
