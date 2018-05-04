@@ -3,15 +3,15 @@
  * @ndaidong
  **/
 
-var {
+const {
   isString,
   isArray,
   isObject,
   hasProperty,
-  encode
+  encode,
 } = require('bellajs');
 
-var stringify = (data) => {
+const stringify = (data) => {
   let s = '';
   if (isString(data)) {
     s = data;
@@ -27,7 +27,6 @@ var stringify = (data) => {
         }
         ar.push(encode(k) + '=' + val);
       }
-
     }
     if (ar.length > 0) {
       s = ar.join('&');
@@ -37,3 +36,4 @@ var stringify = (data) => {
 };
 
 module.exports = stringify;
+
