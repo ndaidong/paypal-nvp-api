@@ -3,11 +3,11 @@
  * @ndaidong
  **/
 
-var {
-  isNumber
+const {
+  isNumber,
 } = require('bellajs');
 
-var formatCurrency = (num) => {
+const formatCurrency = (num) => {
   let n = Number(num);
   if (!n || !isNumber(n) || n < 0) {
     return '0.00';

@@ -3,11 +3,11 @@
  * @ndaidong
  **/
 
-var {
-  decode
+const {
+  decode,
 } = require('bellajs');
 
-var parse = (s) => {
+const parse = (s) => {
   let d = {};
   let a = s.split('&');
   if (a.length > 0) {
@@ -22,3 +22,4 @@ var parse = (s) => {
 };
 
 module.exports = parse;
+

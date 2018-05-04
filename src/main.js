@@ -12,26 +12,25 @@ const TRACKING_URL_SANDBOX = 'https://www.sandbox.paypal.com';
 
 global.Promise = require('promise-wtf');
 
-var {
+const {
   isObject,
-  copies
+  copies,
 } = require('bellajs');
 
-var request = require('request');
+const request = require('request');
 
-var {
+const {
   stringify,
   parse,
-  formatCurrency
+  formatCurrency,
 } = require('./helpers');
 
-var Paypal = (opts = {}) => {
-
+const Paypal = (opts = {}) => {
   let {
     mode = 'sandbox',
     username = '',
     password = '',
-    signature = ''
+    signature = '',
   } = opts;
 
   let baseURL = mode === 'live' ? BASE_API_LIVE : BASE_API_SANDBOX;
@@ -41,12 +40,11 @@ var Paypal = (opts = {}) => {
     USER: username,
     PWD: password,
     SIGNATURE: signature,
-    VERSION
+    VERSION,
   };
 
   let sendRequest = (method, params = {}) => {
     return new Promise((resolve, reject) => {
-
       if (!isObject(params)) {
         return reject(new Error('Params must be an object'));
       }
@@ -60,15 +58,15 @@ var Paypal = (opts = {}) => {
           'X-PAYPAL-SECURITY-USERID': o.USER,
           'X-PAYPAL-SECURITY-PASSWORD': o.PWD,
           'X-PAYPAL-SECURITY-SIGNATURE': o.SIGNATURE,
-          'X-PAYPAL-RESPONSE-DATA-FORMAT': 'JSON'
+          'X-PAYPAL-RESPONSE-DATA-FORMAT': 'JSON',
         },
-        body: stringify(params)
+        body: stringify(params),
       }, (err, response, body) => {
         if (err) {
           return reject(err);
         }
         let {
-          statusCode
+          statusCode,
         } = response;
         if (statusCode !== 200) {
           return reject(new Error(`Error: Response error with code: ${statusCode}`));
@@ -80,8 +78,9 @@ var Paypal = (opts = {}) => {
   };
   return {
     request: sendRequest,
-    formatCurrency
+    formatCurrency,
   };
 };
 
 module.exports = Paypal;
+

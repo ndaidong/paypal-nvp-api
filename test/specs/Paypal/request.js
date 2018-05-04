@@ -5,20 +5,20 @@
 
 /* eslint-disable no-console */
 
-var test = require('tape');
-var nock = require('nock');
+const test = require('tape');
+const nock = require('nock');
 
-var {
+const {
   isObject,
-  hasProperty
+  hasProperty,
 } = require('bellajs');
 
-var config = require('../config');
+const config = require('../config');
 
-var nvp = config.main;
-var paypal = nvp(config);
+const nvp = config.main;
+const paypal = nvp(config);
 
-var hasRequiredKey = (o, k) => {
+const hasRequiredKey = (o, k) => {
   return hasProperty(o, k);
 };
 
@@ -30,7 +30,7 @@ test('.GetBalance()', (assert) => {
     'CORRELATIONID',
     'ACK',
     'VERSION',
-    'BUILD'
+    'BUILD',
   ];
 
   paypal.request('GetBalance', {}).then((re) => {
@@ -38,22 +38,19 @@ test('.GetBalance()', (assert) => {
     props.forEach((k) => {
       assert.ok(hasRequiredKey(re, k), `Result must have the required property "${k}"`);
     });
-
   }).catch((e) => {
     console.log(e);
     return false;
   }).finally(assert.end);
-
 });
 
 test('.SetExpressCheckout()', (assert) => {
-
   let query = {
     PAYMENTREQUEST_0_AMT: '20.00',
     PAYMENTREQUEST_0_CURRENCYCODE: 'USD',
     PAYMENTREQUEST_0_PAYMENTACTION: 'Sale',
     RETURNURL: 'http://google.com/test/onreturn',
-    CANCELURL: 'http://google.com/test/oncancel'
+    CANCELURL: 'http://google.com/test/oncancel',
   };
 
   let props = [
@@ -62,7 +59,7 @@ test('.SetExpressCheckout()', (assert) => {
     'CORRELATIONID',
     'ACK',
     'VERSION',
-    'BUILD'
+    'BUILD',
   ];
 
   paypal.request('SetExpressCheckout', query).then((re) => {
@@ -78,7 +75,6 @@ test('.SetExpressCheckout()', (assert) => {
 
 
 test('Call a unexist method', (assert) => {
-
   paypal.request('CallUnexistMethod', {}).then((re) => {
     assert.ok(isObject(re), 'Result should be an object');
     assert.equals(re.ACK, 'Failure', `Response's properry "ACK" must be an error`);
@@ -86,11 +82,9 @@ test('Call a unexist method', (assert) => {
     console.log(e);
     return false;
   }).finally(assert.end);
-
 });
 
 test('Call with invalid params', (assert) => {
-
   paypal.request('GetBalance', 'noop').then((re) => {
     assert.ok(isObject(re), 'Result should be an object');
     assert.equals(re.ACK, 'Failure', `Response's properry "ACK" must be an error`);
@@ -98,7 +92,6 @@ test('Call with invalid params', (assert) => {
     console.log(e);
     return false;
   }).finally(assert.end);
-
 });
 
 test('Call with instance initialized from the bad configs', (assert) => {
@@ -110,7 +103,6 @@ test('Call with instance initialized from the bad configs', (assert) => {
     console.log(e);
     return false;
   }).finally(assert.end);
-
 });
 
 test('When Paypal returns error', (assert) => {
@@ -126,5 +118,4 @@ test('When Paypal returns error', (assert) => {
     assert.equals(e.message, msg, `It must throw: ${msg}`);
     return false;
   }).finally(assert.end);
-
 });
