@@ -3,26 +3,24 @@ Node.js wrapper for the Paypal Name-Value Pair — NVP
 
 [![NPM](https://badge.fury.io/js/paypal-nvp-api.svg)](https://badge.fury.io/js/paypal-nvp-api)
 [![Build Status](https://travis-ci.org/ndaidong/paypal-nvp-api.svg?branch=master)](https://travis-ci.org/ndaidong/paypal-nvp-api)
-[![codecov](https://codecov.io/gh/ndaidong/paypal-nvp-api/branch/master/graph/badge.svg)](https://codecov.io/gh/ndaidong/paypal-nvp-api)
-![Dependency Status](https://david-dm.org/ndaidong/paypal-nvp-api.svg)
-[![NSP Status](https://nodesecurity.io/orgs/techpush/projects/b6471f27-370b-4f79-badd-75cd5401d826/badge)](https://nodesecurity.io/orgs/techpush/projects/b6471f27-370b-4f79-badd-75cd5401d826)
+
 
 
 ### Usage
 
 Import module and init an instance with given config:
 
-```
-var Paypal = require('paypal-nvp-api');
+```js
+const Paypal = require('paypal-nvp-api');
 
-let config = {
+const config = {
   mode: 'sandbox', // or 'live'
   username: 'someone.itravellocal.com',
   password: 'DYKNJZZE42ASN699',
   signature: 'A0aEilikhBmwfK.NlduDjCbsdgXdA8VDPMDksDhGsHmLQECu80Qtru09'
 }
 
-let paypal = Paypal(config);
+const paypal = Paypal(config);
 ```
 
 Build query and send to Paypal server:
@@ -53,7 +51,7 @@ Another example with "SetExpressCheckout" operation:
 
 ```
 
-let query = {
+const query = {
   'PAYMENTREQUEST_0_AMT': '20.00',
   'PAYMENTREQUEST_0_CURRENCYCODE': 'USD',
   'PAYMENTREQUEST_0_PAYMENTACTION': 'Sale',

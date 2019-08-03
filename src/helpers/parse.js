@@ -8,11 +8,11 @@ const {
 } = require('bellajs');
 
 const parse = (s) => {
-  let d = {};
-  let a = s.split('&');
+  const d = {};
+  const a = s.split('&');
   if (a.length > 0) {
     a.forEach((item) => {
-      let b = item.split('=');
+      const b = item.split('=');
       if (b.length === 2) {
         d[b[0]] = decode(b[1]);
       }
