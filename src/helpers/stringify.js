@@ -16,8 +16,8 @@ const stringify = (data) => {
   if (isString(data)) {
     s = data;
   } else if (isArray(data) || isObject(data)) {
-    let ar = [];
-    for (let k in data) {
+    const ar = [];
+    for (const k in data) {
       if (hasProperty(data, k)) {
         let val = data[k];
         if (isString(val)) {

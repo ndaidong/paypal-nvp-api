@@ -1,5 +1,5 @@
 {
-  "version": "1.2.5",
+  "version": "1.3.0",
   "name": "paypal-nvp-api",
   "description": "Node.js wrapper for the Paypal Name-Value Pair — NVP ",
   "homepage": "https://www.npmjs.com/package/paypal-nvp-api",
@@ -10,32 +10,24 @@
   "author": "@ndaidong",
   "main": "./index.js",
   "engines": {
-    "node": ">= 6.0"
+    "node": ">= 8.6"
   },
   "scripts": {
     "lint": "eslint ./src ./test",
-    "nsp": "nsp check --output checkstyle",
-    "tape": "nyc tape test/start.js | tap-spec",
-    "report": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "pretest": "npm run lint && npm run nsp",
-    "test": "npm run tape",
-    "posttest": "CODECOV_TOKEN=0ad639d1-d519-4946-a361-725e22ec53d6 npm run report",
+    "pretest": "npm run lint",
+    "test": "tap test/start.js --coverage --reporter=spec",
     "reset": "node reset"
   },
   "dependencies": {
-    "bellajs": "^7.2.2",
+    "bellajs": "^7.5.0",
     "promise-wtf": "^1.2.4",
     "request": "^2.86.0"
   },
   "devDependencies": {
     "codecov": "^3.0.1",
-    "eslint": "^4.19.1",
-    "eslint-config-goes": "^1.0.0",
+    "eslint-config-goes": "^1.1.6",
     "nock": "^9.2.5",
-    "nsp": "^3.2.1",
-    "nyc": "^11.7.1",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.9.0"
+    "tap": "^14.5.0"
   },
   "keywords": [
     "Paypal",

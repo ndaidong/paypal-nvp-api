@@ -3,7 +3,7 @@
  * @ndaidong
  */
 
-const test = require('tape');
+const test = require('tap').test;
 
 const {
   isString,
@@ -15,7 +15,7 @@ const nvp = config.main;
 const paypal = nvp(config);
 
 test('.formatCurrency()', (assert) => {
-  let sample = [
+  const sample = [
     {
       value: 1234567,
       result: '1,234,567.00',
@@ -91,8 +91,8 @@ test('.formatCurrency()', (assert) => {
   ];
 
   sample.forEach((item) => {
-    let v = item.value;
-    let result = paypal.formatCurrency(v);
+    const v = item.value;
+    const result = paypal.formatCurrency(v);
     assert.deepEquals(result, item.result, ' / paypal.formatCurrency(' + (isString(v) ? `'${v}'` : v) + ')');
   });
 

@@ -8,7 +8,7 @@ const {
 } = require('bellajs');
 
 const formatCurrency = (num) => {
-  let n = Number(num);
+  const n = Number(num);
   if (!n || !isNumber(n) || n < 0) {
     return '0.00';
   }

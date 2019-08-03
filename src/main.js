@@ -26,30 +26,30 @@ const {
 } = require('./helpers');
 
 const Paypal = (opts = {}) => {
-  let {
+  const {
     mode = 'sandbox',
     username = '',
     password = '',
     signature = '',
   } = opts;
 
-  let baseURL = mode === 'live' ? BASE_API_LIVE : BASE_API_SANDBOX;
+  const baseURL = mode === 'live' ? BASE_API_LIVE : BASE_API_SANDBOX;
   opts.track = mode === 'live' ? TRACKING_URL_LIVE : TRACKING_URL_SANDBOX;
 
-  let payload = {
+  const payload = {
     USER: username,
     PWD: password,
     SIGNATURE: signature,
     VERSION,
   };
 
-  let sendRequest = (method, params = {}) => {
+  const sendRequest = (method, params = {}) => {
     return new Promise((resolve, reject) => {
       if (!isObject(params)) {
         return reject(new Error('Params must be an object'));
       }
 
-      let o = copies(payload, params);
+      const o = copies(payload, params);
       o.METHOD = method;
 
       return request.post({
@@ -65,13 +65,13 @@ const Paypal = (opts = {}) => {
         if (err) {
           return reject(err);
         }
-        let {
+        const {
           statusCode,
         } = response;
         if (statusCode !== 200) {
           return reject(new Error(`Error: Response error with code: ${statusCode}`));
         }
-        let r = parse(body);
+        const r = parse(body);
         return resolve(r);
       });
     });
