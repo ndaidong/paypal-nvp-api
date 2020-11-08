@@ -13,10 +13,10 @@
     "node": ">= 10.14.2"
   },
   "scripts": {
-    "lint": "eslint ./src ./test",
+    "lint": "eslint ./src ./tests",
     "pretest": "npm run lint",
-    "test": "tap test/start.js --coverage --reporter=spec",
-    "citest": "tap tests/start.js --coverage --reporter=spec --coverage-report=lcov",
+    "test": "tap tests/start.js --coverage --reporter=spec --coverage-report=html --no-browser",
+    "citest": "tap tests/start.js --coverage --reporter=spec --coverage-report=lcov --no-browser",
     "reset": "node reset"
   },
   "dependencies": {
