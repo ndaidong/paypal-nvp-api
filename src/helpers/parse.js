@@ -3,10 +3,6 @@
  * @ndaidong
  **/
 
-const {
-  decode,
-} = require('bellajs');
-
 const parse = (s) => {
   const d = {};
   const a = s.split('&');
@@ -14,7 +10,7 @@ const parse = (s) => {
     a.forEach((item) => {
       const b = item.split('=');
       if (b.length === 2) {
-        d[b[0]] = decode(b[1]);
+        d[b[0]] = decodeURIComponent(b[1]);
       }
     });
   }
