@@ -10,14 +10,12 @@ const BASE_API_SANDBOX = 'https://api-3t.sandbox.paypal.com/nvp';
 const TRACKING_URL_LIVE = 'https://www.paypal.com';
 const TRACKING_URL_SANDBOX = 'https://www.sandbox.paypal.com';
 
-global.Promise = require('promise-wtf');
-
 const {
   isObject,
   copies,
 } = require('bellajs');
 
-const request = require('request');
+const fetch = require('node-fetch');
 
 const {
   stringify,
@@ -43,39 +41,35 @@ const Paypal = (opts = {}) => {
     VERSION,
   };
 
-  const sendRequest = (method, params = {}) => {
-    return new Promise((resolve, reject) => {
-      if (!isObject(params)) {
-        return reject(new Error('Params must be an object'));
-      }
+  const sendRequest = async (method, params = {}) => {
+    if (!isObject(params)) {
+      return new Error('Params must be an object');
+    }
 
-      const o = copies(payload, params);
-      o.METHOD = method;
+    try {
+      const query = copies(payload, params);
+      query.METHOD = method;
 
-      return request.post({
-        url: baseURL,
+      const res = await fetch(baseURL, {
+        method: 'POST',
         headers: {
-          'X-PAYPAL-SECURITY-USERID': o.USER,
-          'X-PAYPAL-SECURITY-PASSWORD': o.PWD,
-          'X-PAYPAL-SECURITY-SIGNATURE': o.SIGNATURE,
+          'X-PAYPAL-SECURITY-USERID': query.USER,
+          'X-PAYPAL-SECURITY-PASSWORD': query.PWD,
+          'X-PAYPAL-SECURITY-SIGNATURE': query.SIGNATURE,
           'X-PAYPAL-RESPONSE-DATA-FORMAT': 'JSON',
         },
-        body: stringify(params),
-      }, (err, response, body) => {
-        if (err) {
-          return reject(err);
-        }
-        const {
-          statusCode,
-        } = response;
-        if (statusCode !== 200) {
-          return reject(new Error(`Error: Response error with code: ${statusCode}`));
-        }
-        const r = parse(body);
-        return resolve(r);
+        body: stringify(query),
       });
-    });
+      if (!res.ok) {
+        return new Error(`Error: Response error with code: ${res.statusText}`);
+      }
+      const data = await res.text();
+      return parse(data);
+    } catch (err) {
+      return err;
+    }
   };
+
   return {
     request: sendRequest,
     formatCurrency,

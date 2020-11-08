@@ -8,7 +8,6 @@ const {
   isArray,
   isObject,
   hasProperty,
-  encode,
 } = require('bellajs');
 
 const stringify = (data) => {
@@ -21,11 +20,11 @@ const stringify = (data) => {
       if (hasProperty(data, k)) {
         let val = data[k];
         if (isString(val)) {
-          val = encode(val);
+          val = encodeURIComponent(val);
         } else if (isArray(val) || isObject(val)) {
           val = JSON.stringify(val);
         }
-        ar.push(encode(k) + '=' + val);
+        ar.push(encodeURIComponent(k) + '=' + val);
       }
     }
     if (ar.length > 0) {

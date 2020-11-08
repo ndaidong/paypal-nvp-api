@@ -2,7 +2,9 @@
 Node.js wrapper for the Paypal Name-Value Pair — NVP
 
 [![NPM](https://badge.fury.io/js/paypal-nvp-api.svg)](https://badge.fury.io/js/paypal-nvp-api)
-[![Build Status](https://travis-ci.org/ndaidong/paypal-nvp-api.svg?branch=master)](https://travis-ci.org/ndaidong/paypal-nvp-api)
+![CI test](https://github.com/ndaidong/paypal-nvp-api/workflows/ci-test/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/ndaidong/paypal-nvp-api/badge.svg)](https://coveralls.io/github/ndaidong/paypal-nvp-api)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ndaidong_paypal-nvp-api&metric=alert_status)](https://sonarcloud.io/dashboard?id=ndaidong_paypal-nvp-api)
 
 
 
